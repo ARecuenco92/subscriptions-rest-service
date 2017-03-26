@@ -13,6 +13,7 @@ public class Subscription {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	Integer id;
+	Integer newsletterId;
 	String email;
 	String firstName;
 	String gender;
@@ -25,6 +26,14 @@ public class Subscription {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public Integer getNewsletterId() {
+		return newsletterId;
+	}
+
+	public void setNewsletterId(Integer newsletterId) {
+		this.newsletterId = newsletterId;
 	}
 
 	public String getEmail() {
@@ -67,8 +76,8 @@ public class Subscription {
 		this.consent = consent;
 	}
 	
-	public boolean hasId() {
-		return this.id != null;
+	public boolean hasNewsletterId() {
+		return this.newsletterId != null;
 	}
 	
 	public boolean hasEmail() {

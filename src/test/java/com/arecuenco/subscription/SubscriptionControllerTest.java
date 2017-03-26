@@ -64,7 +64,7 @@ public class SubscriptionControllerTest {
 	@Test
 	public void testSubscriptionCorrectdRequest() throws Exception {
 		Subscription subscription = new Subscription();
-		subscription.setId(1);
+		subscription.setNewsletterId(132);
 		subscription.setEmail("eamil");
 		subscription.setDateOfBirth(new Date());
 		subscription.setConsent(true);

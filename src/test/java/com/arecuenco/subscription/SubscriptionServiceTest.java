@@ -38,6 +38,7 @@ public class SubscriptionServiceTest {
 	@Test
 	public void correctSubscription() {
 		Subscription subscription = new Subscription();
+		subscription.setNewsletterId(212);
 		subscription.setEmail("user@email.com");
 		subscription.setDateOfBirth(new Date());
 		subscription.setConsent(true);
