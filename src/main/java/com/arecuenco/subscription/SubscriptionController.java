@@ -7,17 +7,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.arecuenco.event.Event;
+import com.arecuenco.event.EventService;
+
 @RestController
 @RequestMapping(path = "/subscription")
 public class SubscriptionController {
 
 	@Autowired
-	SubscriptionService service;
+	private EventService eventService;
+	
+	@Autowired
+	private SubscriptionService subscriptionService;
 
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<SubscriptionResponse> subscribe(@RequestBody Subscription subscription) {
-		if (isValidPostRequest(subscription)) {
-			Integer id = service.subscribe(subscription);
+		if (isValidRequest(subscription)) {
+			Integer id = subscriptionService.subscribe(subscription);
 			SubscriptionResponse response = new SubscriptionResponse();
 			response.setId(id);
 
@@ -26,8 +32,17 @@ public class SubscriptionController {
 		return ResponseEntity.badRequest().build();
 	}
 
-	private boolean isValidPostRequest(Subscription subscription) {
+	private boolean isValidRequest(Subscription subscription){
+		return isValidSubscription(subscription) && existsNewsletter(subscription);
+	}
+	
+	private boolean isValidSubscription(Subscription subscription) {
 		return subscription.hasNewsletterId() && subscription.hasEmail() && subscription.hasDateOfBirth();
+	} 
+	
+	private boolean existsNewsletter(Subscription subscription) {
+		Event event = eventService.getEvent(subscription.getNewsletterId());
+		return event != null;
 	}
 
 	private class SubscriptionResponse {

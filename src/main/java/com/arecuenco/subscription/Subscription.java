@@ -12,13 +12,13 @@ public class Subscription {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	Integer id;
-	Integer newsletterId;
-	String email;
-	String firstName;
-	String gender;
-	Date dateOfBirth;
-	boolean consent;
+	private Integer id;
+	private Integer newsletterId;
+	private String email;
+	private String firstName;
+	private String gender;
+	private Date dateOfBirth;
+	private boolean consent;
 
 	public Integer getId() {
 		return id;
@@ -75,15 +75,15 @@ public class Subscription {
 	public void setConsent(boolean consent) {
 		this.consent = consent;
 	}
-	
+
 	public boolean hasNewsletterId() {
 		return this.newsletterId != null;
 	}
-	
+
 	public boolean hasEmail() {
 		return this.email != null && !this.email.isEmpty();
 	}
-	
+
 	public boolean hasDateOfBirth() {
 		return this.dateOfBirth != null;
 	}
