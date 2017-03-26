@@ -15,9 +15,6 @@
 
 	`mvn package`
 
-* Execute the application and the embedded Server will start and listen on port 8080:
-
-	`java -jar target/stomp-websocket-chat-0.0.1-SNAPSHOT.jar`
 
 ## Software frameworks/libraries
 
