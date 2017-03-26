@@ -66,5 +66,17 @@ public class Subscription {
 	public void setConsent(boolean consent) {
 		this.consent = consent;
 	}
+	
+	public boolean hasId() {
+		return this.id != null;
+	}
+	
+	public boolean hasEmail() {
+		return this.email != null && !this.email.isEmpty();
+	}
+	
+	public boolean hasDateOfBirth() {
+		return this.dateOfBirth != null;
+	}
 
 }

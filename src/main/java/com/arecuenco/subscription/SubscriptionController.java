@@ -27,7 +27,7 @@ public class SubscriptionController {
 	}
 
 	private boolean isValidPostRequest(Subscription subscription) {
-		return false;
+		return subscription.hasId() && subscription.hasEmail() && subscription.hasDateOfBirth();
 	}
 
 	private class SubscriptionResponse {
