@@ -27,3 +27,7 @@
 * **Spring Boot**: is an application framework for the Java platform that provides extensions for building web applications on top of the Java EE platform.
 
 	Reference: [Spring Boot](https://projects.spring.io/spring-boot/)
+	
+## References
+
+* [Accessing JPA Data with REST](https://spring.io/guides/gs/accessing-data-rest/)

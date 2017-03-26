@@ -21,5 +21,5 @@ public class SubscriptionService {
 	private boolean validSubscription(Subscription subscription) {
 		return subscription != null && subscription.isConsent();
 	}
-	
+
 }
