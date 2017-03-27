@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.arecuenco.event.Event;
 import com.arecuenco.event.EventService;
 
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
+@Api(tags = "Subscription Api")
 @RestController
 @RequestMapping(path = "/subscription")
 public class SubscriptionController {

@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.arecuenco.subscription.Subscription;
 import com.arecuenco.subscription.SubscriptionService;
 
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
+@Api(tags = "Email Api")
 @RestController
 @RequestMapping(path = "/email")
 public class EmailController {
