@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.arecuenco.event.Event;
 import com.arecuenco.event.EventService;
 
+import io.swagger.annotations.ApiOperation;
+
 @RestController
 @RequestMapping(path = "/subscription")
 public class SubscriptionController {
@@ -20,6 +22,7 @@ public class SubscriptionController {
 	@Autowired
 	private SubscriptionService subscriptionService;
 
+	@ApiOperation(value = "Create subscription and return its identifier")
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<SubscriptionResponse> subscribe(@RequestBody Subscription subscription) {
 		if (isValidSubscription(subscription)) {

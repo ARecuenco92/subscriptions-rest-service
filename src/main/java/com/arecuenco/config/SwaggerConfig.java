@@ -3,6 +3,9 @@ package com.arecuenco.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import com.google.common.base.Predicate;
+import com.google.common.base.Predicates;
+
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.spi.DocumentationType;
@@ -15,30 +18,13 @@ public class SwaggerConfig {
 	@Bean
 	public Docket subscriptionsApi() { 
 		return new Docket(DocumentationType.SWAGGER_2)  
-				.groupName("Subscription Api")
 				.select()          
 				.apis(RequestHandlerSelectors.any())              
-				.paths(PathSelectors.regex("/subscription"))                          
+				.paths(paths())                          
 				.build();                                           
 	}
-
-	@Bean
-	public Docket eventApi() { 
-		return new Docket(DocumentationType.SWAGGER_2)  
-				.groupName("Event Api")
-				.select()                                  
-				.apis(RequestHandlerSelectors.any())              
-				.paths(PathSelectors.regex("/event"))                          
-				.build();                                           
-	}
-
-	@Bean
-	public Docket emailApi() { 
-		return new Docket(DocumentationType.SWAGGER_2)  
-				.groupName("Email Api")
-				.select()                                  
-				.apis(RequestHandlerSelectors.any())              
-				.paths(PathSelectors.regex("/email"))                          
-				.build();                                           
+	
+	private Predicate<String> paths() {
+		return Predicates.not(PathSelectors.regex("/error*"));
 	}
 }

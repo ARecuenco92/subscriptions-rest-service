@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.arecuenco.subscription.Subscription;
 import com.arecuenco.subscription.SubscriptionService;
 
+import io.swagger.annotations.ApiOperation;
+
 @RestController
 @RequestMapping(path = "/email")
 public class EmailController {
@@ -23,6 +25,7 @@ public class EmailController {
 	@Autowired
 	private EmailService emailService;
 
+	@ApiOperation(value = "Send email to the newsletter subscribers")
 	@RequestMapping(value = "/{newsletterId}", method = RequestMethod.POST)
 	public ResponseEntity<EmailResponse> sendNewsletterEmails(@PathVariable Integer newsletterId, @RequestBody Email email) {
 		EmailResponse response = new EmailResponse();

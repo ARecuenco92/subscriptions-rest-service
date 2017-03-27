@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.annotations.ApiOperation;
+
 @RestController
 @RequestMapping(path = "/event")
 public class EventController {
@@ -15,11 +17,13 @@ public class EventController {
 	@Autowired
 	private EventService eventService;
 
+	@ApiOperation(value = "Find and return all newsletters")
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<Iterable<Event>> getAll() {
 		return ResponseEntity.ok().body(eventService.getAll());
 	}
 	
+	@ApiOperation(value = "Find newsletter by identifier and return it")
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<EventResponse> createEvent(@RequestBody Event event) {
 		if (isValidRequest(event)) {
@@ -32,6 +36,7 @@ public class EventController {
 		return ResponseEntity.badRequest().build();
 	}
 	
+	@ApiOperation(value = "Create newsletter and return its identifier")
 	@RequestMapping(value = "/{newsletterId}", method = RequestMethod.GET)
 	public ResponseEntity<Event> getEvent(@PathVariable Integer newsletterId) {
 		Event event = eventService.getEvent(newsletterId);
