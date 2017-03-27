@@ -16,4 +16,9 @@ public class EventService {
 	public Event getEvent(Integer newsletterId) {
 		return repository.findOne(newsletterId);
 	}
+	
+	public Integer createEvent(Event event){
+		Event result = repository.save(event);
+		return result.getId();
+	}
 }
