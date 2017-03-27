@@ -7,6 +7,7 @@ import java.util.Date;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -16,10 +17,13 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class SubscriptionServiceTest {
 
 	@Autowired
-	SubscriptionService service;
+	private SubscriptionService service;
+	
+	@Mock
+	private SubscriptionRepository repository;
 	
 	@Test
-	public void nullSubscription() {
+	public void testNullSubscription() {
 		Subscription subscription = null;
 		
 		Integer result = service.subscribe(subscription);
@@ -27,7 +31,7 @@ public class SubscriptionServiceTest {
 	}
 	
 	@Test
-	public void unconsentedSubscription() {
+	public void testUnconsentedSubscription() {
 		Subscription subscription = new Subscription();
 		subscription.setConsent(false);
 		
@@ -36,7 +40,7 @@ public class SubscriptionServiceTest {
 	}
 
 	@Test
-	public void correctSubscription() {
+	public void testValidSubscription() {
 		Subscription subscription = new Subscription();
 		subscription.setNewsletterId(212);
 		subscription.setEmail("user@email.com");

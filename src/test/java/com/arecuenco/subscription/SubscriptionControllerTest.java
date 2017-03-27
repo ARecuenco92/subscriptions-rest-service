@@ -4,7 +4,6 @@ import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import java.io.IOException;
 import java.util.Date;
 
 import org.junit.Before;
@@ -20,8 +19,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.arecuenco.utils.TestUtils;
 
 @RunWith(SpringRunner.class)
 @ContextConfiguration
@@ -42,18 +40,13 @@ public class SubscriptionControllerTest {
 	}
 
 	@Test
-	public void testSubscriptionEmptyRequest() throws Exception {
-		mockMvc.perform(post("/subscription")).andExpect(status().isBadRequest());
-	}
-
-	@Test
-	public void testSubscriptionBadRequest() throws Exception {
+	public void testSubscribeBadRequest() throws Exception {
 		Subscription subscription = new Subscription();
-		subscription.setId(1);
+		subscription.setNewsletterId(1);
 		subscription.setDateOfBirth(new Date());
 		subscription.setConsent(true);
 
-		String json = toJSON(subscription);
+		String json = TestUtils.toJSON(subscription);
 
 		MockHttpServletRequestBuilder request = post("/subscription").contentType(MediaType.APPLICATION_JSON_UTF8)
 				.content(json);
@@ -62,14 +55,14 @@ public class SubscriptionControllerTest {
 	}
 
 	@Test
-	public void testSubscriptionCorrectdRequest() throws Exception {
+	public void testSubscribeValidRequest() throws Exception {
 		Subscription subscription = new Subscription();
-		subscription.setNewsletterId(132);
+		subscription.setNewsletterId(1);
 		subscription.setEmail("eamil");
 		subscription.setDateOfBirth(new Date());
 		subscription.setConsent(true);
 
-		String json = toJSON(subscription);
+		String json = TestUtils.toJSON(subscription);
 
 		when(service.subscribe(subscription)).thenReturn(1);
 
@@ -79,9 +72,5 @@ public class SubscriptionControllerTest {
 		mockMvc.perform(request).andExpect(status().isOk());
 	}
 
-	private static String toJSON(Object object) throws IOException {
-		ObjectMapper mapper = new ObjectMapper();
-		mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
-		return mapper.writeValueAsString(object);
-	}
+	
 }
