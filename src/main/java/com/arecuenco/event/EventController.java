@@ -22,34 +22,34 @@ public class EventController {
 	public ResponseEntity<Iterable<Event>> getAll() {
 		return ResponseEntity.ok().body(eventService.getAll());
 	}
-	
-	@ApiOperation(value = "Find newsletter by identifier and return it")
+
+	@ApiOperation(value = "Create newsletter and return its identifier")
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<EventResponse> createEvent(@RequestBody Event event) {
 		if (isValidRequest(event)) {
 			Integer id = eventService.createEvent(event);
 			EventResponse response = new EventResponse();
 			response.setId(id);
-	
+
 			return ResponseEntity.ok().body(response);
 		}
 		return ResponseEntity.badRequest().build();
 	}
-	
-	@ApiOperation(value = "Create newsletter and return its identifier")
+
+	@ApiOperation(value = "Find newsletter by identifier and return it")
 	@RequestMapping(value = "/{newsletterId}", method = RequestMethod.GET)
 	public ResponseEntity<Event> getEvent(@PathVariable Integer newsletterId) {
 		Event event = eventService.getEvent(newsletterId);
-		if(event != null){
+		if (event != null) {
 			return ResponseEntity.ok().body(event);
-		} 
+		}
 		return ResponseEntity.notFound().build();
 	}
-	
-	private boolean isValidRequest(Event event){
+
+	private boolean isValidRequest(Event event) {
 		return event.hasTopic();
 	}
-	
+
 	private class EventResponse {
 		private Integer id;
 
