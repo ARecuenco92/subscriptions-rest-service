@@ -22,20 +22,19 @@ public class SubscriptionController {
 
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<SubscriptionResponse> subscribe(@RequestBody Subscription subscription) {
-		if (isValidRequest(subscription)) {
-			Integer id = subscriptionService.subscribe(subscription);
-			SubscriptionResponse response = new SubscriptionResponse();
-			response.setId(id);
-
-			return ResponseEntity.ok().body(response);
+		if (isValidSubscription(subscription)) {
+			if(existsNewsletter(subscription)){
+				Integer id = subscriptionService.subscribe(subscription);
+				SubscriptionResponse response = new SubscriptionResponse();
+				response.setId(id);
+	
+				return ResponseEntity.ok().body(response);
+			}
+			return ResponseEntity.notFound().build();
 		}
 		return ResponseEntity.badRequest().build();
 	}
 
-	private boolean isValidRequest(Subscription subscription){
-		return isValidSubscription(subscription) && existsNewsletter(subscription);
-	}
-	
 	private boolean isValidSubscription(Subscription subscription) {
 		return subscription.hasNewsletterId() && subscription.hasEmail() && subscription.hasDateOfBirth();
 	} 

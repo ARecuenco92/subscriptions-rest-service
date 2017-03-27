@@ -19,6 +19,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
+import com.arecuenco.event.Event;
+import com.arecuenco.event.EventService;
 import com.arecuenco.utils.TestUtils;
 
 @RunWith(SpringRunner.class)
@@ -26,7 +28,10 @@ import com.arecuenco.utils.TestUtils;
 public class SubscriptionControllerTest {
 
 	@Mock
-	private SubscriptionService service;
+	private EventService eventService;
+	
+	@Mock
+	private SubscriptionService subscriptionService;
 
 	@InjectMocks
 	private SubscriptionController controller;
@@ -48,25 +53,47 @@ public class SubscriptionControllerTest {
 
 		String json = TestUtils.toJSON(subscription);
 
-		MockHttpServletRequestBuilder request = post("/subscription").contentType(MediaType.APPLICATION_JSON_UTF8)
+		MockHttpServletRequestBuilder request = post("/subscription")
+				.contentType(MediaType.APPLICATION_JSON_UTF8)
 				.content(json);
 
 		mockMvc.perform(request).andExpect(status().isBadRequest());
 	}
 
 	@Test
-	public void testSubscribeValidRequest() throws Exception {
+	public void testSubscribeNotFoundRequest() throws Exception {
 		Subscription subscription = new Subscription();
 		subscription.setNewsletterId(1);
-		subscription.setEmail("eamil");
+		subscription.setEmail("email");
 		subscription.setDateOfBirth(new Date());
 		subscription.setConsent(true);
 
 		String json = TestUtils.toJSON(subscription);
 
-		when(service.subscribe(subscription)).thenReturn(1);
+		when(subscriptionService.subscribe(subscription)).thenReturn(1);
 
-		MockHttpServletRequestBuilder request = post("/subscription").contentType(MediaType.APPLICATION_JSON_UTF8)
+		MockHttpServletRequestBuilder request = post("/subscription")
+				.contentType(MediaType.APPLICATION_JSON_UTF8)
+				.content(json);
+
+		mockMvc.perform(request).andExpect(status().isNotFound());
+	}
+	
+	@Test
+	public void testSubscribeValidRequest() throws Exception {
+		Subscription subscription = new Subscription();
+		subscription.setNewsletterId(1);
+		subscription.setEmail("email");
+		subscription.setDateOfBirth(new Date());
+		subscription.setConsent(true);
+
+		String json = TestUtils.toJSON(subscription);
+
+		when(eventService.getEvent(subscription.getNewsletterId())).thenReturn(new Event());
+		when(subscriptionService.subscribe(subscription)).thenReturn(1);
+
+		MockHttpServletRequestBuilder request = post("/subscription")
+				.contentType(MediaType.APPLICATION_JSON_UTF8)
 				.content(json);
 
 		mockMvc.perform(request).andExpect(status().isOk());
