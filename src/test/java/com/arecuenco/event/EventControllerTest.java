@@ -75,7 +75,7 @@ public class EventControllerTest {
 		MockHttpServletRequestBuilder request = post("/event").contentType(MediaType.APPLICATION_JSON_UTF8)
 				.content(json);
 
-		mockMvc.perform(request).andExpect(status().isOk());
+		mockMvc.perform(request).andExpect(status().isBadRequest());
 	}
 	
 	@Test
