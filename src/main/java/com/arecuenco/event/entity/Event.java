@@ -1,4 +1,4 @@
-package com.arecuenco.event;
+package com.arecuenco.event.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

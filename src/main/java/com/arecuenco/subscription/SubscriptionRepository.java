@@ -7,6 +7,8 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
+import com.arecuenco.subscription.entity.Subscription;
+
 @Repository
 public interface SubscriptionRepository extends CrudRepository<Subscription, Integer> {
 

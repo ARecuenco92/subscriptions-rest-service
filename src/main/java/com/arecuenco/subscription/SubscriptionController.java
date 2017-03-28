@@ -7,8 +7,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.arecuenco.event.Event;
 import com.arecuenco.event.EventService;
+import com.arecuenco.event.entity.Event;
+import com.arecuenco.subscription.entity.Subscription;
+import com.arecuenco.subscription.entity.SubscriptionResponse;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -47,20 +49,6 @@ public class SubscriptionController {
 	private boolean existsNewsletter(Subscription subscription) {
 		Event event = eventService.getEvent(subscription.getNewsletterId());
 		return event != null;
-	}
-
-	private class SubscriptionResponse {
-		private Integer id;
-
-		@SuppressWarnings("unused")
-		public Integer getId() {
-			return id;
-		}
-
-		public void setId(Integer id) {
-			this.id = id;
-		}
-
 	}
 
 }

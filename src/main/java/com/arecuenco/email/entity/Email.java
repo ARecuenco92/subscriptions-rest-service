@@ -1,4 +1,4 @@
-package com.arecuenco.email;
+package com.arecuenco.email.entity;
 
 public class Email {
 

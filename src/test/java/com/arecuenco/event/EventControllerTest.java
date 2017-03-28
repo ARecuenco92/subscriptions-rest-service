@@ -18,6 +18,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
+import com.arecuenco.event.entity.Event;
 import com.arecuenco.utils.TestUtils;
 
 @RunWith(SpringRunner.class)

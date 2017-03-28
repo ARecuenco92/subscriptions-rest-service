@@ -4,7 +4,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.arecuenco.subscription.Subscription;
+import com.arecuenco.email.entity.Email;
+import com.arecuenco.subscription.entity.Subscription;
 
 @Service
 public class EmailService {

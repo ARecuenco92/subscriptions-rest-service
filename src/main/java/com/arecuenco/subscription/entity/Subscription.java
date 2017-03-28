@@ -1,4 +1,4 @@
-package com.arecuenco.subscription;
+package com.arecuenco.subscription.entity;
 
 import java.util.Date;
 

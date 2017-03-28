@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.arecuenco.subscription.Subscription;
+import com.arecuenco.email.entity.Email;
+import com.arecuenco.email.entity.EmailResponse;
 import com.arecuenco.subscription.SubscriptionService;
+import com.arecuenco.subscription.entity.Subscription;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -38,19 +40,5 @@ public class EmailController {
 		response.setSent(sent);
 
 		return ResponseEntity.ok().body(response);
-	}
-
-	private class EmailResponse {
-		private boolean sent;
-
-		@SuppressWarnings("unused")
-		public boolean isSent() {
-			return sent;
-		}
-
-		public void setSent(boolean sent) {
-			this.sent = sent;
-		}
-
 	}
 }
