@@ -48,7 +48,7 @@ public class EmailControllerTest {
 		
 		String json = TestUtils.toJSON(email);
 
-		MockHttpServletRequestBuilder request = post("/email/1")
+		MockHttpServletRequestBuilder request = post("/api/email/1")
 				.contentType(MediaType.APPLICATION_JSON_UTF8)
 				.content(json);
 

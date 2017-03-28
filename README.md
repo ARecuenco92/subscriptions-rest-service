@@ -41,6 +41,10 @@ The project contains a unit test collection using JUnit to validate and ensure t
 
 	Reference: [Spring Boot](https://projects.spring.io/spring-boot/)
 
+* **Spring Security**: is a powerful and highly customizable authentication and access-control framework. It is the de-facto standard for securing Spring-based applications. It is used to configure the authentication of the internal application services (event and email services).
+
+	Reference: [Spring Security](https://projects.spring.io/spring-security/)
+
 * **H2 Database**: is a relational database management system that can be embedded in Java applications. It is used to store the newsletter subscriptions.
 
 	Reference: [H2 Database Engine](http://www.h2database.com/html/main.html)
@@ -55,3 +59,5 @@ The project contains a unit test collection using JUnit to validate and ensure t
 ## References
 
 * [Accessing JPA Data with REST](https://spring.io/guides/gs/accessing-data-rest/)
+
+* [Spring Security Reference](https://docs.spring.io/spring-security/site/docs/current/reference/htmlsingle/)

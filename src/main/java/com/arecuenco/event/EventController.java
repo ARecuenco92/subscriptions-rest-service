@@ -13,7 +13,7 @@ import io.swagger.annotations.ApiOperation;
 
 @Api(tags = "Event Api")
 @RestController
-@RequestMapping(path = "/event")
+@RequestMapping(path = "/api/event")
 public class EventController {
 
 	@Autowired

@@ -53,7 +53,7 @@ public class SubscriptionControllerTest {
 
 		String json = TestUtils.toJSON(subscription);
 
-		MockHttpServletRequestBuilder request = post("/subscription")
+		MockHttpServletRequestBuilder request = post("/api/subscription")
 				.contentType(MediaType.APPLICATION_JSON_UTF8)
 				.content(json);
 
@@ -72,7 +72,7 @@ public class SubscriptionControllerTest {
 
 		when(subscriptionService.subscribe(subscription)).thenReturn(1);
 
-		MockHttpServletRequestBuilder request = post("/subscription")
+		MockHttpServletRequestBuilder request = post("/api/subscription")
 				.contentType(MediaType.APPLICATION_JSON_UTF8)
 				.content(json);
 
@@ -92,7 +92,7 @@ public class SubscriptionControllerTest {
 		when(eventService.getEvent(subscription.getNewsletterId())).thenReturn(new Event());
 		when(subscriptionService.subscribe(subscription)).thenReturn(1);
 
-		MockHttpServletRequestBuilder request = post("/subscription")
+		MockHttpServletRequestBuilder request = post("/api/subscription")
 				.contentType(MediaType.APPLICATION_JSON_UTF8)
 				.content(json);
 

@@ -18,7 +18,7 @@ import io.swagger.annotations.ApiOperation;
 
 @Api(tags = "Email Api")
 @RestController
-@RequestMapping(path = "/email")
+@RequestMapping(path = "/api/email")
 public class EmailController {
 
 	@Autowired

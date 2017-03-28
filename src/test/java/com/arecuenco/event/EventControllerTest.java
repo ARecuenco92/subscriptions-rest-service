@@ -40,14 +40,14 @@ public class EventControllerTest {
 	
 	@Test
 	public void testGetAll() throws Exception {
-		MockHttpServletRequestBuilder request = get("/event");
+		MockHttpServletRequestBuilder request = get("/api/event");
 
 		mockMvc.perform(request).andExpect(status().isOk());
 	}
 	
 	@Test
 	public void testgetEventNotFound() throws Exception {
-		MockHttpServletRequestBuilder request = get("/event/1");
+		MockHttpServletRequestBuilder request = get("/api/event/1");
 
 		mockMvc.perform(request).andExpect(status().isNotFound());
 	}
@@ -60,7 +60,7 @@ public class EventControllerTest {
 			
 		when(service.getEvent(event.getId())).thenReturn(event);
 
-		MockHttpServletRequestBuilder request = get("/event/1");
+		MockHttpServletRequestBuilder request = get("/api/event/1");
 		
 		mockMvc.perform(request).andExpect(status().isOk());
 	}
@@ -72,7 +72,7 @@ public class EventControllerTest {
 
 		when(service.createEvent(event)).thenReturn(1);
 
-		MockHttpServletRequestBuilder request = post("/event").contentType(MediaType.APPLICATION_JSON_UTF8)
+		MockHttpServletRequestBuilder request = post("/api/event").contentType(MediaType.APPLICATION_JSON_UTF8)
 				.content(json);
 
 		mockMvc.perform(request).andExpect(status().isBadRequest());
@@ -87,7 +87,7 @@ public class EventControllerTest {
 
 		when(service.createEvent(event)).thenReturn(1);
 
-		MockHttpServletRequestBuilder request = post("/event").contentType(MediaType.APPLICATION_JSON_UTF8)
+		MockHttpServletRequestBuilder request = post("/api/event").contentType(MediaType.APPLICATION_JSON_UTF8)
 				.content(json);
 
 		mockMvc.perform(request).andExpect(status().isOk());

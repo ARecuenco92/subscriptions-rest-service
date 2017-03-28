@@ -15,7 +15,7 @@ import io.swagger.annotations.ApiOperation;
 
 @Api(tags = "Subscription Api")
 @RestController
-@RequestMapping(path = "/subscription")
+@RequestMapping(path = "/api/subscription")
 public class SubscriptionController {
 
 	@Autowired
