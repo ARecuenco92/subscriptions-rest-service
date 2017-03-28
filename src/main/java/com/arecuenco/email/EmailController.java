@@ -23,22 +23,23 @@ public class EmailController {
 
 	@Autowired
 	private SubscriptionService subscriptionService;
-	
+
 	@Autowired
 	private EmailService emailService;
 
 	@ApiOperation(value = "Send email to the newsletter subscribers")
 	@RequestMapping(value = "/{newsletterId}", method = RequestMethod.POST)
-	public ResponseEntity<EmailResponse> sendNewsletterEmails(@PathVariable Integer newsletterId, @RequestBody Email email) {
+	public ResponseEntity<EmailResponse> sendNewsletterEmails(@PathVariable Integer newsletterId,
+			@RequestBody Email email) {
 		EmailResponse response = new EmailResponse();
 		List<Subscription> list = subscriptionService.getSubscriptions(newsletterId);
-		
+
 		boolean sent = emailService.sendEmail(email, list);
 		response.setSent(sent);
-		
+
 		return ResponseEntity.ok().body(response);
 	}
-	
+
 	private class EmailResponse {
 		private boolean sent;
 

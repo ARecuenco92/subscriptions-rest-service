@@ -11,10 +11,6 @@ public class EmailService {
 
 	/**
 	 * Send an email to all subscribers
-	 * 
-	 * @param email
-	 * @param subscriptions
-	 * @return
 	 */
 	public boolean sendEmail(Email email, List<Subscription> subscriptions) {
 		return true;

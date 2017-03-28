@@ -20,7 +20,7 @@ public class SubscriptionController {
 
 	@Autowired
 	private EventService eventService;
-	
+
 	@Autowired
 	private SubscriptionService subscriptionService;
 
@@ -28,11 +28,11 @@ public class SubscriptionController {
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<SubscriptionResponse> subscribe(@RequestBody Subscription subscription) {
 		if (isValidSubscription(subscription)) {
-			if(existsNewsletter(subscription)){
+			if (existsNewsletter(subscription)) {
 				Integer id = subscriptionService.subscribe(subscription);
 				SubscriptionResponse response = new SubscriptionResponse();
 				response.setId(id);
-	
+
 				return ResponseEntity.ok().body(response);
 			}
 			return ResponseEntity.notFound().build();
@@ -42,8 +42,8 @@ public class SubscriptionController {
 
 	private boolean isValidSubscription(Subscription subscription) {
 		return subscription.hasNewsletterId() && subscription.hasEmail() && subscription.hasDateOfBirth();
-	} 
-	
+	}
+
 	private boolean existsNewsletter(Subscription subscription) {
 		Event event = eventService.getEvent(subscription.getNewsletterId());
 		return event != null;

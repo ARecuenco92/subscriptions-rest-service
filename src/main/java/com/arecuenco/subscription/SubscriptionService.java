@@ -19,7 +19,7 @@ public class SubscriptionService {
 		}
 		return index;
 	}
-	
+
 	public List<Subscription> getSubscriptions(Integer newsletterId) {
 		return repository.findByNewsletterId(newsletterId);
 	}
