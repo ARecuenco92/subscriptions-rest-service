@@ -2,7 +2,7 @@
 
 The aim of the project is to design and develop a Subscription API. This service will allow users to sign up for a specified newsletter and receive personalised emails. 
 
-The subscription service interacts with two more internal services: the event and email services. The event service it will be used to create new newsletters and list the existing ones. Finally, the second service sends a personalised email to subscribers of an specified newsletter. 
+The subscription service interacts with two more internal services: the event and email services. The event service it will be used to create new newsletters and list the existing ones. Finally, the second service sends a personalised email to subscribers of an specified newsletter. Authentication required to create newsletter and send emails to newsletter subscribers.
 
 The project contains a unit test collection using JUnit to validate and ensure that code meets its design and behaves as intended.
 
